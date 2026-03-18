@@ -1,0 +1,261 @@
+:root {
+    --bg-color: #0d0d12;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --primary-color: #6366f1;
+    --primary-glow: rgba(99, 102, 241, 0.3);
+    --secondary-color: #a855f7;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #f43f5e;
+    --success-color: #10b981;
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+p.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Glass Card */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 30px -10px var(--primary-glow);
+}
+
+.card h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* Video Preview */
+.video-preview {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    background: #000;
+    border: none;
+}
+
+/* Chunk Cards in Details View */
+.chunk-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    padding: 0; /* Remove padding to allow header to sit flush */
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.chunk-card-header {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    transition: background 0.3s ease;
+}
+
+.chunk-card-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.chunk-card-header h2 {
+    margin: 0 !important;
+    font-size: 1.2rem !important;
+    color: var(--secondary-color);
+}
+
+.toggle-arrow {
+    width: 24px;
+    height: 24px;
+    fill: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.chunk-card.expanded .toggle-arrow {
+    transform: rotate(180deg);
+}
+
+.chunk-card-body {
+    padding: 0 2rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+    opacity: 0;
+}
+
+.chunk-card.expanded .chunk-card-body {
+    max-height: 5000px; /* Large enough for content */
+    padding: 1.5rem 2rem 2rem 2rem;
+    opacity: 1;
+    transition: max-height 0.5s ease-in, opacity 0.5s ease-in;
+}
+
+.chunk-section {
+    margin-bottom: 2rem; /* Increased margin for better spacing */
+}
+
+.chunk-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.expandable-text {
+    position: relative;
+}
+
+.text-content {
+    max-height: 80px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.text-content.expanded {
+    max-height: 2000px;
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.key-points {
+    list-style: none;
+}
+
+.key-points li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.key-points li::before {
+    content: "•";
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* MCQ Section */
+.mcq-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.option {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.option.selected {
+    border-color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+.option.correct {
+    border-color: var(--success-color);
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.option.wrong {
+    border-color: var(--accent-color);
+    background: rgba(244, 63, 94, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .grid { grid-template-columns: 1fr; }
+    .container { padding: 1rem; }
+}
