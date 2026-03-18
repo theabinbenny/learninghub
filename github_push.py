@@ -41,7 +41,7 @@ def main():
     run_command("git add .", cwd=repo_path)
     
     # 4. Commit
-    commit_msg = "Update website data"
+    commit_msg = "Update website data with git hub code"
     if len(sys.argv) > 1:
         commit_msg = " ".join(sys.argv[1:])
     
